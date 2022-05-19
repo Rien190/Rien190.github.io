@@ -46,7 +46,7 @@ $$
 
 每个$y_i$都依次这么产生，那么看起来就是整个系统根据输入句子Source生成了目标句子Target。如果Source是中文句子，Target是英文句子，那么这就是解决机器翻译问题的Encoder-Decoder框架；如果Source是一篇文章，Target是概括性的几句描述语句，那么这是文本摘要的Encoder-Decoder框架；如果Source是一句问句，Target是一句回答，那么这是问答系统或者对话机器人的Encoder-Decoder框架。由此可见，在文本处理领域，Encoder-Decoder的应用领域相当广泛。
 
-![image-20220515135444239](https://gitee.com/Rien_190/img-url/raw/master/img/202205151717314.png "图1 抽象的文本处理领域的Encoder-Decoder框架")
+![image-20220515135444239](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205151717314.png "图1 抽象的文本处理领域的Encoder-Decoder框架")
 
 <center><p>图1 抽象的文本处理领域的Encoder-Decoder框架</p></center>
 
@@ -90,7 +90,7 @@ $$
 
 同理，目标句子中的每个单词都应该学会其对应的源语句子中单词的注意力分配概率信息。这意味着在生成每个单词的时候，原先都是相同的中间语义表示C会被替换成根据当前生成单词而不断变化的$C_i$。**理解Attention模型的关键就是这里，即由固定的中间语义表示C换成了根据当前输出单词来调整成加入注意力模型的变化的$C_i$。**增加了注意力模型的Encoder-Decoder框架理解起来如图2所示:
 
-![image-20220515141236033](https://gitee.com/Rien_190/img-url/raw/master/img/202205151821033.png)
+![image-20220515141236033](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205151821033.png)
 
 <center><p> 图2 引入注意力模型的Encoder-Decoder框架</p></center>
 
@@ -127,7 +127,7 @@ $$
 
 其中，$L_x$代表输入句子Source的长度，$a_{ij}$代表在Target输出第i个单词时Source输入句子中第j个单词的注意力分配系数，而$h_j$则是Source输入句子中第j个单词的语义编码。假设$C_i$下标i就是上面例子所说的“ 汤姆” ，那么$L_x$就是3，h1=f(“Tom”)，h2=f(“Chase”),h3=f(“Jerry”)分别是输入句子每个单词的语义编码，对应的注意力模型权值则分别是0.6,0.2,0.2，所以g函数本质上就是个加权求和函数。如果形象表示的话，翻译中文单词“汤姆”的时候，数学公式对应的中间语义表示$C_i$的形成过程类似图3:
 
-<img src="https://gitee.com/Rien_190/img-url/raw/master/img/202205151822347.png" alt="image-20220515173941242" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205151822347.png" alt="image-20220515173941242" style="zoom: 67%;" />
 
 <center><p>图3 Attention的形成过程</p></center>
 
@@ -135,13 +135,13 @@ $$
 
 为了便于说明，我们假设对图2的非Attention模型的Encoder-Decoder框架进行细化，Encoder采用RNN模型，Decoder也采用RNN模型，这是比较常见的一种模型配置，则图1的框架转换为图4。
 
-![image-20220515182524683](https://gitee.com/Rien_190/img-url/raw/master/img/202205151825368.png)
+![image-20220515182524683](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205151825368.png)
 
 <center><p>图4 RNN作为具体模型的Encoder-Decoder框架</p></center>
 
 那么用图5可以较为便捷地说明注意力分配概率分布值的通用计算过程。
 
-![image-20220515193144507](https://gitee.com/Rien_190/img-url/raw/master/img/202205151931716.png)
+![image-20220515193144507](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205151931716.png)
 
 <center><p>图5 注意力分配概率计算</p></center>
 
@@ -157,7 +157,7 @@ $$
 
 从图6来看待Attention机制:
 
-![image-20220515200505865](https://gitee.com/Rien_190/img-url/raw/master/img/202205152005816.png)
+![image-20220515200505865](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205152005816.png)
 
 <center><p>图6 Attention机制的本质思想</p></center>
 
@@ -183,7 +183,7 @@ $$
 
 这样，可以将Attention的计算过程抽象为如图7展示的三个阶段:
 
-![image-20220515200858399](https://gitee.com/Rien_190/img-url/raw/master/img/202205152008398.png)
+![image-20220515200858399](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205152008398.png)
 
 <center><p>图7 三阶段计算Attention过程</p></center>
 
@@ -221,13 +221,13 @@ $$
 
 ## Self Attention模型
 
-![image-20220516121050914](https://gitee.com/Rien_190/img-url/raw/master/img/202205161215624.png)
+![image-20220516121050914](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161215624.png)
 
 <center><p>图8 单self-attention</p></center>
 
 在self-attention中,输入的vector在**考虑整个句子**后得到向量,然后放入FC(Fully-connected)的network中,决定output. self-attention可以进行多次:
 
-![image-20220516121550285](https://gitee.com/Rien_190/img-url/raw/master/img/202205161215248.png)
+![image-20220516121550285](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161215248.png)
 
 <center><p>图9 多self-attention</p></center>
 
@@ -235,7 +235,7 @@ FC:专注处理某一位置, self-attention:处理整个句子
 
 self-attention产生中间结构为:
 
-![image-20220516122836715](https://gitee.com/Rien_190/img-url/raw/master/img/202205161228278.png)
+![image-20220516122836715](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161228278.png)
 
 <center><p>图10 根据输入得到输出</p></center>
 
@@ -243,27 +243,27 @@ self-attention产生中间结构为:
 
 首先根据$a^1$找出与$a^1$最相关的向量:
 
-![image-20220516123207040](https://gitee.com/Rien_190/img-url/raw/master/img/202205161232161.png)
+![image-20220516123207040](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161232161.png)
 
 计算方法:
 
-![image-20220516123237616](https://gitee.com/Rien_190/img-url/raw/master/img/202205161232547.png)
+![image-20220516123237616](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161232547.png)
 
 将输入向量分别乘上不同的矩阵$W^q$和$W^k$,得到向量q,k, 这两个向量做dot-product得到相关性$\alpha$. **有很多方法得到 $\alpha$ ,这是最常用的**.
 
 之后对于$a^1$,需要分别和$a^2,a^3,a^4$计算$\alpha$. 如图:
 
-![image-20220516123846840](https://gitee.com/Rien_190/img-url/raw/master/img/202205161238952.png)
+![image-20220516123846840](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161238952.png)
 
 一般在实际操作中,还需要计算$a_{1,1}$即自己和自己的关联性
 
-![image-20220516123926366](https://gitee.com/Rien_190/img-url/raw/master/img/202205161239913.png)
+![image-20220516123926366](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161239913.png)
 
 得到每一个向量的关联性后会做一个softmax.
 
 接下来根据关联性即attention的分数抽取重要资讯:
 
-![image-20220516124313268](https://gitee.com/Rien_190/img-url/raw/master/img/202205161243926.png)
+![image-20220516124313268](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161243926.png)
 
 至此根据所有sequence得到了图10中的$b^1$.
 
@@ -271,15 +271,15 @@ self-attention产生中间结构为:
 
 从矩阵的角度考虑:
 
-![image-20220516134227237](https://gitee.com/Rien_190/img-url/raw/master/img/202205161342556.png)
+![image-20220516134227237](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161342556.png)
 
-![image-20220516134609397](https://gitee.com/Rien_190/img-url/raw/master/img/202205161346871.png)
+![image-20220516134609397](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161346871.png)
 
-![image-20220516134821158](https://gitee.com/Rien_190/img-url/raw/master/img/202205161348267.png)
+![image-20220516134821158](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161348267.png)
 
 总结而言:
 
-![image-20220516135016114](https://gitee.com/Rien_190/img-url/raw/master/img/202205161350266.png)
+![image-20220516135016114](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161350266.png)
 
 在计算中,只有$W^q,W^k,W^v$是未知的,需要根据training data找出来
 
@@ -293,11 +293,11 @@ self-attention产生中间结构为:
 
 这个vector是hand-crafted 并可能learn from data
 
-![image-20220516141025334](https://gitee.com/Rien_190/img-url/raw/master/img/202205161410451.png)
+![image-20220516141025334](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161410451.png)
 
 ## self-attention vs RNN
 
-![image-20220516141955916](https://gitee.com/Rien_190/img-url/raw/master/img/202205161419983.png)
+![image-20220516141955916](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161419983.png)
 
 首先因为顺序问题,两个vector之间RNN不容易进行考虑,但是self-attention容易进行考虑. self-attention更容易抽取信息
 
@@ -307,9 +307,9 @@ self-attention产生中间结构为:
 
 在self-attention中用q找k计算相关性,但是相关性定义不同. 所以也许需要多个q. 不同的q负责不同的相关性. 
 
-![image-20220516135747976](https://gitee.com/Rien_190/img-url/raw/master/img/202205161357957.png)
+![image-20220516135747976](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161357957.png)
 
-然后![image-20220516135841757](https://gitee.com/Rien_190/img-url/raw/master/img/202205161358892.png)
+然后![image-20220516135841757](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161358892.png)
 
 即为本次输出
 
