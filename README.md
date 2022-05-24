@@ -1,6 +1,22 @@
 # local test
 `bundle exec jekyll serve`
 
+# post head
+
+```
+---
+title: blog'title
+tags: [tag1, tag2]
+---
+
+<meta name="referrer" content="no-referrer" />
+
+会显示在home中的简介
+
+<!--more-->
+
+```
+
 
 ## Features
 
