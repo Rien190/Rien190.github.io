@@ -1,5 +1,7 @@
 ---
 title: Transformer
+date: 2022/5/16
+categories: 科研
 tags: [NLP, Transformer]
 ---
 
@@ -11,13 +13,13 @@ NLP领域Transformer模型。
 
 
 
-Transformer是seq2seq model with self-attention. 
+Transformer是seq2seq model with self-attention.
 
 # seq2seq
 
 ![image-20220516191914583](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161919572.png)
 
-seq2seq有很多应用, 这里不一一列举. 
+seq2seq有很多应用, 这里不一一列举.
 
 一般seq2seq model 有两个模块: encoder和decoder:
 
@@ -48,7 +50,7 @@ transformer里用的是self-attention, transformer的encoder如图:
 
 # decoder
 
-decoder作用为产生输出. 
+decoder作用为产生输出.
 
 ## AT
 
@@ -84,7 +86,7 @@ encoder和decoder是一样的. 只是decoder最后会做一个softmax得到几�
 
 ![image-20220516220535863](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205162205736.png)
 
-因为在self-attention中$a^1到a^4$是同时出现的, 而在decoder中$a^1到a^4$是顺序出现的. 
+因为在self-attention中$a^1到a^4$是同时出现的, 而在decoder中$a^1到a^4$是顺序出现的.
 
 还有问题需要处理: decoder需要决定输出的长度. 所以需要END符. 如图:
 

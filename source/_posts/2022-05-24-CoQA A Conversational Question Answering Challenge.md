@@ -1,5 +1,7 @@
 ---
 title: CoQA A Conversational Question Answering Challenge
+date: 2022/5/24
+categories: 科研
 tags: [NLP, paperReading , 数据集 ]
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: Self-Attention机制
+date: 2022/5/15
+categories: 科研
 tags: [Self-Attention, NLP, Transformer]
 ---
 
@@ -267,7 +269,7 @@ self-attention产生中间结构为:
 
 至此根据所有sequence得到了图10中的$b^1$.
 
-清楚$b^1$的计算方法后, 可以得到$b^2,b^3,b^4$的计算方法. 这些输出不是顺序计算,而是同时计算出来的. 
+清楚$b^1$的计算方法后, 可以得到$b^2,b^3,b^4$的计算方法. 这些输出不是顺序计算,而是同时计算出来的.
 
 从矩阵的角度考虑:
 
@@ -305,7 +307,7 @@ self-attention产生中间结构为:
 
 ## Multi-head Self-attention
 
-在self-attention中用q找k计算相关性,但是相关性定义不同. 所以也许需要多个q. 不同的q负责不同的相关性. 
+在self-attention中用q找k计算相关性,但是相关性定义不同. 所以也许需要多个q. 不同的q负责不同的相关性.
 
 ![image-20220516135747976](https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205161357957.png)
 
