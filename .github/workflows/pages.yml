@@ -25,9 +25,19 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
-      - uses: docker://pandoc/core:2.9
-        with:
-          args: "--help" # gets appended to pandoc command
+      - name: Install Pandoc
+        run: |
+          # install pandoc
+          curl -s -L https://github.com/jgm/pandoc/releases/download/2.9.2/pandoc-2.9.2-linux-amd64.tar.gz | tar xvzf - -C $RUNNER_TOOL_CACHE/
+      - name: Hexo Generate
+        run: |
+          # add pandoc to PATH
+          export PATH="$PATH:$RUNNER_TOOL_CACHE/pandoc-2.9.2/bin"
+          rm -f .yarnclean
+          yarn --frozen-lockfile --ignore-engines --ignore-optional --non-interactive --silent --ignore-scripts --production=false
+          rm -rf ./public
+          yarn run hexo clean
+          yarn run hexo generate
       - name: Build
         run: npm run build
       - name: Deploy
