@@ -24,7 +24,7 @@
 <meta property="og:description" content="毕设: 基于多模态数据的法律调研与咨询对话系统的构建过程随笔">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-15T18:02:32.939Z">
+<meta property="article:modified_time" content="2023-07-16T07:34:36.818Z">
 <meta property="article:author" content="Rien Zhu">
 <meta property="article:tag" content="多模态">
 <meta property="article:tag" content="对话系统">
@@ -248,13 +248,12 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-
 <p>毕设: 基于多模态数据的法律调研与咨询对话系统的构建过程随笔</p>
 <span id="more"></span>
-
-<p>在actions&#x2F;actions.py 中进行用户自定义action的编写, 参考<a target="_blank" rel="noopener" href="https://ningshixian.github.io/2020/12/14/Rasa-Core-&-Rasa-X-%E8%AF%A6%E8%A7%A3/">Rasa Core &amp; Rasa X 详解</a>的action部分</p>
+<p>在actions/actions.py 中进行用户自定义action的编写, 参考<a target="_blank" rel="noopener" href="https://ningshixian.github.io/2020/12/14/Rasa-Core-&amp;-Rasa-X-%E8%AF%A6%E8%A7%A3/">Rasa Core &amp; Rasa X 详解</a>的action部分</p>
 <p>建议在更改数据和配置之后执行操作:<code>rasa data validate</code>, 对领域, NLU训练数据和故事进行验证</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://ningshixian.github.io/2020/12/14/Rasa-Core-&-Rasa-X-%E8%AF%A6%E8%A7%A3/">Rasa Core &amp; Rasa X 详解</a></p>
+<h1 id="reference">Reference</h1>
+<p><a target="_blank" rel="noopener" href="https://ningshixian.github.io/2020/12/14/Rasa-Core-&amp;-Rasa-X-%E8%AF%A6%E8%A7%A3/">Rasa Core &amp; Rasa X 详解</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/u/4b912e917c2e">rasa对话系统踩坑系列</a></p>
 
                 
@@ -418,6 +417,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -596,6 +601,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

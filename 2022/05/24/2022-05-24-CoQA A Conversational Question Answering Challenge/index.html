@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205250043643.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205250047584.png">
 <meta property="article:published_time" content="2022-05-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-15T18:02:32.939Z">
+<meta property="article:modified_time" content="2023-07-16T07:34:36.818Z">
 <meta property="article:author" content="Rien Zhu">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="paperReading">
@@ -263,27 +263,37 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-
 <p>阅读论文CoQA: A Conversational Question Answering Challenge并进行整理</p>
 <span id="more"></span>
-
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>人类通过涉及一系列相互联系的问题和答案的对话来收集信息。因此，要让机器协助收集信息，就必须让它们能够回答对话问题。</p>
+<h1 id="abstract">Abstract</h1>
+<p>人类通过涉及一系列相互联系的问题和答案的对话来收集信息。因此，要让机器协助收集信息，就必须让它们能够回答对话问题。</p>
 <p>CoQA：一个用于建立对话式问题回答（Conversational Question Answering）系统的新型数据集。数据集包含12.7万个带答案的问题，这些问题来自7个不同领域的8千条文本段落的对话。问题是对话式的，而答案是自由格式的文本，并在段落中突出了相应的证据。</p>
 <p>深入分析CoQA后发现对话式问题具有现有的阅读理解数据集中不存在的，挑战性的现象，例如核心推理和实用性推理。</p>
 <p>在CoQA上评估了强大的对话和阅读理解模型。最好的系统获得了65.4%的F1分数，比人类的表现（88.8%）落后23.4分，这表明有很大的改进空间。</p>
-<p>开源项目地址： <a target="_blank" rel="noopener" href="https://stanfordnlp.github.io/coqa">https://stanfordnlp.github.io/coqa</a></p>
-<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>我们问其他人一个问题，以寻求或测试他们对某个主题的知识。根据他们的回答，我们再追问一个问题，而他们的第二个答案则建立在已经讨论过的内容之上。这种渐进的方面使人类的对话变得简洁。无法以这种方式建立和维持共同点是虚拟助手通常看起来不像是合格的对话伙伴的部分原因。</p>
+<p>开源项目地址： https://stanfordnlp.github.io/coqa</p>
+<h1 id="introduction">1 Introduction</h1>
+<p>我们问其他人一个问题，以寻求或测试他们对某个主题的知识。根据他们的回答，我们再追问一个问题，而他们的第二个答案则建立在已经讨论过的内容之上。这种渐进的方面使人类的对话变得简洁。无法以这种方式建立和维持共同点是虚拟助手通常看起来不像是合格的对话伙伴的部分原因。</p>
 <p>在本文中，我们介绍了CoQA，一个用于测量机器参与问题回答式对话的能力的对话问题回答数据集。在CoQA中，机器必须理解一段文字，并回答对话中出现的一系列问题。我们开发CoQA有三个主要目标。</p>
-<h2 id="1-还原人类对话的性质（the-nature-of-questions-in-a-human-conversation）"><a href="#1-还原人类对话的性质（the-nature-of-questions-in-a-human-conversation）" class="headerlink" title="1.还原人类对话的性质（the nature of questions in a human conversation）"></a>1.还原人类对话的性质（the nature of questions in a human conversation）</h2><p>下图1显示了两个正在阅读一段话的人之间的对话</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205241511813.png" srcset="/img/loading.gif" lazyload alt="image-20220524151156858"></p>
-<center><p> 图1 CoQA数据集中的一个对话  </p></center>
-
+<h2 id="还原人类对话的性质the-nature-of-questions-in-a-human-conversation">1.还原人类对话的性质（the nature of questions in a human conversation）</h2>
+<p>下图1显示了两个正在阅读一段话的人之间的对话</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205241511813.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524151156858</figcaption>
+</figure>
+<center>
+<p>
+图1 CoQA数据集中的一个对话
+</p>
+</center>
 <p>一个作为提问者，另一个作为回答者。在这个对话中，第一个问题之后的每个问题都取决于对话历史。例如，Q5只有一个词，如果不知道已经说了什么，就不可能回答。提出简短的问题是一种有效的人类对话策略，但这样的问题对于机器来说确实很难解析。<strong>最先进的模型在很大程度上依赖于问题和段落之间的词汇相似性。目前，还没有大规模的阅读理解数据集包含依赖于对话历史的问题，而这正是CoQA的主要开发目的。</strong></p>
 <p>CoQA与现有阅读理解数据集的比较如下表：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205241515727.png" srcset="/img/loading.gif" lazyload alt="image-20220524151514762"></p>
-<h2 id="2-确保对话中答案的自然度"><a href="#2-确保对话中答案的自然度" class="headerlink" title="2.确保对话中答案的自然度"></a>2.确保对话中答案的自然度</h2><p>许多现有的QA数据集将答案限制在特定段落的连续文本跨度内，这样的答案并不总是自然的。例如，在图1中的Q4。在CoQA中，我们建议答案可以是自由格式的文本，而对于每个答案，我们还提供一段文本跨度（text span）作为答案的理由（rational）。因此，Q4的答案是简单的“3”，而其理由则跨越了多个句子。</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205241515727.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524151514762</figcaption>
+</figure>
+<h2 id="确保对话中答案的自然度">2.确保对话中答案的自然度</h2>
+<p>许多现有的QA数据集将答案限制在特定段落的连续文本跨度内，这样的答案并不总是自然的。例如，在图1中的Q4。在CoQA中，我们建议答案可以是自由格式的文本，而对于每个答案，我们还提供一段文本跨度（text span）作为答案的理由（rational）。因此，Q4的答案是简单的“3”，而其理由则跨越了多个句子。</p>
 <p>在以前的阅读理解数据集中自由形式的答案已经被研究过了，并且由于可能的答案的高差异性，BLEU或ROUGE等指标被用于评估。本文的一个关键区别是，我们要求回答者首先选择一个文本跨度作为理由，然后编辑它以获得一个自由形式的答案。我们的方法在答案的自然性和可靠的自动评估之间取得了平衡，它导致了高度的人类一致性（人类注释者之间88.8%的F1词汇重叠）。</p>
-<h2 id="3-建立跨领域表现稳健的QA系统"><a href="#3-建立跨领域表现稳健的QA系统" class="headerlink" title="3.建立跨领域表现稳健的QA系统"></a>3.建立跨领域表现稳健的QA系统</h2><p>目前的QA数据集主要集中在一个单一的领域，这使得它很难测试现有模型的泛化能力。因此，我们从七个不同的领域收集数据集：儿童故事、文学、初中和高中英语考试、新闻、维基百科、Reddit和科学。最后两个用于域外评估。</p>
+<h2 id="建立跨领域表现稳健的qa系统">3.建立跨领域表现稳健的QA系统</h2>
+<p>目前的QA数据集主要集中在一个单一的领域，这使得它很难测试现有模型的泛化能力。因此，我们从七个不同的领域收集数据集：儿童故事、文学、初中和高中英语考试、新闻、维基百科、Reddit和科学。最后两个用于域外评估。</p>
 <p>总而言之，CoQA具有以下主要特点：</p>
 <ul>
 <li>它由12.7万个对话回合组成，这些对话回合是从8k个文本段落的对话中收集的。平均对话长度为15个回合，每个回合由一个问题和一个答案组成。</li>
@@ -291,39 +301,61 @@
 <li>它的文本段落是从七个不同的领域收集的：五个用于域内评估，两个用于域外评估。</li>
 </ul>
 <p>几乎一半的CoQA问题都是使用隐喻来回顾对话历史的，而且有很大一部分问题需要进行实用性推理，这对仅仅依靠词汇线索的模型来说是一个挑战。我们在最先进的对话和阅读理解模型的基础上，对几个深度神经网络模型进行了基准测试。表现最好的系统达到了65.4%的F1分数。相比之下，人类取得了88.8%的F1分数，高出23.4%的F1分数，表明还有很大的改进空间。</p>
-<h1 id="2-Task-Definition"><a href="#2-Task-Definition" class="headerlink" title="2 Task Definition"></a>2 Task Definition</h1><p>任务为：给出一段话和迄今为止的对话，任务是回答对话中的下一个问题。谈话中的每个回合都包含一个问题和一个答案。</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205241622144.png" srcset="/img/loading.gif" lazyload alt="image-20220524162205024"></p>
-<center><p>图2 一段对话以彩色显示核心推理链。焦点实体在Q4、Q5、Q6中变化 </p></center>
-
-
+<h1 id="task-definition">2 Task Definition</h1>
+<p>任务为：给出一段话和迄今为止的对话，任务是回答对话中的下一个问题。谈话中的每个回合都包含一个问题和一个答案。</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205241622144.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524162205024</figcaption>
+</figure>
+<center>
+<p>
+图2 一段对话以彩色显示核心推理链。焦点实体在Q4、Q5、Q6中变化
+</p>
+</center>
 <p>对于图2中的例子，对话以问题Q1开始。我们根据证据R1来回答Q1，R1是段落中的一个连续的文本跨度。在这个例子中，回答者只写了“州长”作为答案，但选择了一个较长的理由。</p>
-<p>当我们谈到Q2时，我们必须参考对话历史。在我们的任务中，对话历史对于回答许多问题是不可缺少的。我们使用对话历史Q1和A1，证据R2来回答Q2。从形式上看，要回答$Q_n$，取决于对话历史。Q1, A1, …, $Q_{n-1}, A_{n-1}$。对于一个无法回答的问题，我们给出未知数（unknown）作为最终答案，并且不强调任何理由。</p>
+<p>当我们谈到Q2时，我们必须参考对话历史。在我们的任务中，对话历史对于回答许多问题是不可缺少的。我们使用对话历史Q1和A1，证据R2来回答Q2。从形式上看，要回答<span class="math inline">\(Q_n\)</span>，取决于对话历史。Q1, A1, ..., <span class="math inline">\(Q_{n-1}, A_{n-1}\)</span>。对于一个无法回答的问题，我们给出未知数（unknown）作为最终答案，并且不强调任何理由。</p>
 <p>在这个例子中，我们观察到<strong>焦点实体随着对话的进行而变化</strong>。在第4题中，提问者用his指代Terry，在第5题中，他指代Ken。如果这些问题没有得到正确的解决，我们最终会得到不正确的答案。<strong>问题的对话性</strong>要求我们从多个句子（当前问题和之前的问题或答案，以及段落中的句子）中进行推理。常见的情况是，一个问题可能需要跨越多个句子的推理（例如，图1中的Q1 Q4和Q5）。</p>
 <p>我们收集理由（rationale）作为（可选）选项来帮助回答问题。但是，在测试时未提供理由。一个模型需要自己根据证据做出决定，并得出最终答案。</p>
-<h1 id="3-Dataset-Collection"><a href="#3-Dataset-Collection" class="headerlink" title="3 Dataset Collection"></a>3 Dataset Collection</h1><p>对于每一次对话，我们都会聘请两位注释者，一位提问者和一位回答者。与使用单个注释者同时充当提问者和回答者相比，这种设置有几个优点：</p>
-<ol>
+<h1 id="dataset-collection">3 Dataset Collection</h1>
+<p>对于每一次对话，我们都会聘请两位注释者，一位提问者和一位回答者。与使用单个注释者同时充当提问者和回答者相比，这种设置有几个优点：</p>
+<ol type="1">
 <li>当两个注释者谈论一篇文章时，他们的对话流是自然的</li>
 <li>当一个注释者回答一个模糊的问题或错误的答案时，另一个注释者可以进行标记</li>
 <li>两个注释者在有分歧时可以讨论准则（通过一个单独的聊天窗口）。这些措施有助于防止spam（<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SPAM/2626792">搜索引擎垃圾技术</a>），并获得高一致度的数据</li>
 </ol>
 <p>我们使用亚马逊机械人（AMT），通过ParlAI MTurk API对工人进行通道配对。</p>
-<h2 id="3-1-Collection-Interface"><a href="#3-1-Collection-Interface" class="headerlink" title="3.1 Collection Interface"></a>3.1 Collection Interface</h2><p>我们对提问者和回答者有不同的界面。提问者的作用是提出问题，回答者的作用是回答问题，并标记理由。提问者和回答者都能看到本轮现在为止发生的对话，也就是说，之前所有轮的问题和回答以及理由都是隐藏的。</p>
+<h2 id="collection-interface">3.1 Collection Interface</h2>
+<p>我们对提问者和回答者有不同的界面。提问者的作用是提出问题，回答者的作用是回答问题，并标记理由。提问者和回答者都能看到本轮现在为止发生的对话，也就是说，之前所有轮的问题和回答以及理由都是隐藏的。</p>
 <p>在提出新的问题时，我们希望提问者避免使用段落中的确切词汇，以增加词汇的多样性。当他们输入一个已经出现在段落中的词时，我们提醒他们尽可能地转述问题。界面如图：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205251228469.png" srcset="/img/loading.gif" lazyload alt="image-20220524193802358"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205251228469.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524193802358</figcaption>
+</figure>
 <p>在回答问题时，我们希望回答者坚持使用段落中的词汇，以限制可能的答案数量。鼓励按如下操作：首先突出一个理由（文本跨度），然后将其自动复制到答案框中，进一步要求编辑复制的文本，以产生一个自然答案。我们发现78%的答案至少有一个编辑，如改变一个单词的大小写或添加一个标点符号。界面如图：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205251228942.png" srcset="/img/loading.gif" lazyload alt="image-20220524193830556"></p>
-<h2 id="3-2-Passage-Selection"><a href="#3-2-Passage-Selection" class="headerlink" title="3.2 Passage Selection"></a>3.2 Passage Selection</h2><p>从7个领域选取段落。并非所有的段落都同样适合产生有趣的对话。一个只有一个实体的段落往往会导致问题完全集中在该实体上。因此，我们使用Stanford CoreNLP，选择具有多个实体、事件和人称参考的段落。我们将长篇文章截断到前几段，每段200字左右。</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205251228942.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524193830556</figcaption>
+</figure>
+<h2 id="passage-selection">3.2 Passage Selection</h2>
+<p>从7个领域选取段落。并非所有的段落都同样适合产生有趣的对话。一个只有一个实体的段落往往会导致问题完全集中在该实体上。因此，我们使用Stanford CoreNLP，选择具有多个实体、事件和人称参考的段落。我们将长篇文章截断到前几段，每段200字左右。</p>
 <p>对于每个域内数据集，我们将数据分割成这样：开发集（development set，用于调整参数，选择特征，以及对学习算法作出其它决定）里有100个段落，测试集里有100个段落，其余的在训练集中。对于每个域外数据集，我们只在测试集中有100段话。</p>
 <p>具体分布如下表：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205251229079.png" srcset="/img/loading.gif" lazyload alt="image-20220524194351703"></p>
-<h2 id="3-3-Collecting-Multiple-Answers"><a href="#3-3-Collecting-Multiple-Answers" class="headerlink" title="3.3 Collecting Multiple Answers"></a>3.3 Collecting Multiple Answers</h2><p>CoQA中的一些问题可能有多个有效答案，因此在开发集和测试集中额外选取了三个答案。由于我们的数据是对话式的，问题会影响答案，而答案又会影响后续问题。为了保证对话的连贯性，通过将答案收集任务变成预测原始答案来实现：让回答者预测原始答案，尽量让回答者的答案向原始答案的方向上靠。</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205251229079.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524194351703</figcaption>
+</figure>
+<h2 id="collecting-multiple-answers">3.3 Collecting Multiple Answers</h2>
+<p>CoQA中的一些问题可能有多个有效答案，因此在开发集和测试集中额外选取了三个答案。由于我们的数据是对话式的，问题会影响答案，而答案又会影响后续问题。为了保证对话的连贯性，通过将答案收集任务变成预测原始答案来实现：让回答者预测原始答案，尽量让回答者的答案向原始答案的方向上靠。</p>
 <p>在我们的试点实验中，当我们使用这种验证设置时，人类的F1得分增加了5.4%。</p>
-<h1 id="4-Dataset-Analysis"><a href="#4-Dataset-Analysis" class="headerlink" title="4 Dataset Analysis"></a>4 Dataset Analysis</h1><h2 id="4-1-Comparison-with-SQuAD-2-0"><a href="#4-1-Comparison-with-SQuAD-2-0" class="headerlink" title="4.1 Comparison with SQuAD 2.0"></a>4.1 Comparison with SQuAD 2.0</h2><p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242037168.png" srcset="/img/loading.gif" lazyload alt="image-20220524203700115"></p>
-<center><p>图3 问题在 SQuAD 和 CoQA 中的三元组前缀的分布。 </p></center>
-
-<p>SQuAD 2.0介绍：SQuAD 是由 Rajpurkar 等人提出的阅读理解数据集。包含 10 万个（问题，原文，答案）三元组，来自于 536 篇维基百科文章，问题和答案的构建主要是通过众包的方式，让标注人员提出最多 5 个基于文章内容的问题并提供正确答案，且答案出现在原文中。SQuAD 和之前的完形填空类阅读理解数据集如 CNN&#x2F;DM，CBT等最大的区别在于：SQuAD 中的答案不再是单个实体或单词，而可能是一段短语，这使得其答案更难预测。SQuAD 包含公开的训练集和开发集，以及一个隐藏的测试集，采用与ImageNet 类似的封闭评测的方式。</p>
+<h1 id="dataset-analysis">4 Dataset Analysis</h1>
+<h2 id="comparison-with-squad-2.0">4.1 Comparison with SQuAD 2.0</h2>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242037168.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524203700115</figcaption>
+</figure>
+<center>
+<p>
+图3 问题在 SQuAD 和 CoQA 中的三元组前缀的分布。
+</p>
+</center>
+<p>SQuAD 2.0介绍：SQuAD 是由 Rajpurkar 等人提出的阅读理解数据集。包含 10 万个（问题，原文，答案）三元组，来自于 536 篇维基百科文章，问题和答案的构建主要是通过众包的方式，让标注人员提出最多 5 个基于文章内容的问题并提供正确答案，且答案出现在原文中。SQuAD 和之前的完形填空类阅读理解数据集如 CNN/DM，CBT等最大的区别在于：SQuAD 中的答案不再是单个实体或单词，而可能是一段短语，这使得其答案更难预测。SQuAD 包含公开的训练集和开发集，以及一个隐藏的测试集，采用与ImageNet 类似的封闭评测的方式。</p>
 <p>CoQA与SQuAD区别：</p>
-<ol>
+<ol type="1">
 <li>SQuAD大部分是关于what的问题，而CoQA的问题类型分布更广泛</li>
 <li>did, was, is, does and这些词经常在CoQA中见到，但SQuAD中却很少见</li>
 <li>SQuAD中不存在指代词，但CoQA几乎每个部分都包含指代词，体现了CoQA的对话性</li>
@@ -331,9 +363,14 @@
 </ol>
 <p>两个数据集都有大量的命名实体和名词短语作为答案</p>
 <p>下表是SQuAD和CoQA答案种类的分布：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242107699.png" srcset="/img/loading.gif" lazyload alt="image-20220524210722898"></p>
-<h2 id="4-2-Linguistic-Phenomena"><a href="#4-2-Linguistic-Phenomena" class="headerlink" title="4.2 Linguistic Phenomena"></a>4.2 Linguistic Phenomena</h2><p>在开发集中抽出150个问题，并对各种现象进行注释，如下表所示：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242108599.png" srcset="/img/loading.gif" lazyload alt="image-20220524210853711"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242107699.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524210722898</figcaption>
+</figure>
+<h2 id="linguistic-phenomena">4.2 Linguistic Phenomena</h2>
+<p>在开发集中抽出150个问题，并对各种现象进行注释，如下表所示：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242108599.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524210853711</figcaption>
+</figure>
 <p>按问题和文章关系分类：</p>
 <p>词汇匹配：问题包含至少一个出现在文章中的内容词（29.8 %）</p>
 <p>释义：理由的释义，同义、反义词、上下义和否定（43.0 %）</p>
@@ -342,61 +379,92 @@
 <p>不依赖于与会话历史的共指，可以自己回答（30.5 %）</p>
 <p>包含明确的核心推理标记，如他、她、它。这些标记要么是指一个实体，要么是指对话中介绍的事件。（49.7 % ）</p>
 <p>有明确的核心参考标记，而是隐含地指称一个实体或事件（19.8 %）</p>
-<h2 id="4-3-Analysis-of-Free-form-Answers"><a href="#4-3-Analysis-of-Free-form-Answers" class="headerlink" title="4.3 Analysis of Free-form Answers"></a>4.3 Analysis of Free-form Answers</h2><p>由于CoQA的答案是自由形式的，大约有33.2%的答案与给定的段落不完全重合。我们分析了100个对话来研究这类答案的行为。</p>
+<h2 id="analysis-of-free-form-answers">4.3 Analysis of Free-form Answers</h2>
+<p>由于CoQA的答案是自由形式的，大约有33.2%的答案与给定的段落不完全重合。我们分析了100个对话来研究这类答案的行为。</p>
 <p>“YES”和“NO”的答案分别占48.5%和30.3%，总共占78.8%。</p>
 <p>对文本跨度的编辑，大约占14.3%，以提高答案的流畅性（自然度）。在这些编辑中，超过三分之二的编辑只是一个词的编辑，要么插入或删除一个词。这表明文本跨度是自然答案的一个很好的近似值，剩下的三分之一涉及多个编辑。虽然多次编辑对使用自动指标进行评估是一个挑战，但我们观察到这些答案中有许多与段落部分重叠，表明在我们的环境中，词的重叠仍然是一个可靠的自动评估指标。</p>
 <p>其余的答案包括计数（5.1%）和从问题中选择一个选项（1.8%）。</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242151557.png" srcset="/img/loading.gif" lazyload alt="image-20220524215147398"></p>
-<h2 id="4-4-Conversation-Flow"><a href="#4-4-Conversation-Flow" class="headerlink" title="4.4 Conversation Flow"></a>4.4 Conversation Flow</h2><p>一个连贯的对话必须在转折之间有流畅的过渡。我们期望段落的叙事结构能够影响我们的对话流程。我们把每段话分成10个统一的小块，然后记录对话进行过程中，对十个大块的关注程度的变化情况，如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242155013.png" srcset="/img/loading.gif" lazyload alt="image-20220524215525184"></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242151557.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524215147398</figcaption>
+</figure>
+<h2 id="conversation-flow">4.4 Conversation Flow</h2>
+<p>一个连贯的对话必须在转折之间有流畅的过渡。我们期望段落的叙事结构能够影响我们的对话流程。我们把每段话分成10个统一的小块，然后记录对话进行过程中，对十个大块的关注程度的变化情况，如下图所示：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205242155013.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220524215525184</figcaption>
+</figure>
 <p>横轴表示对话的轮数（即第几轮问答）纵轴表示对话块的分布。从上往下（红色到深绿）依次为文章的第一块到最后一块，文中的灰色频率带宽度表示块与块之间转换的频繁程度，越频繁的转换，带宽越宽。</p>
 <p>由图可知，最开始对话总是集中在前面几块，随着对话轮数的进行，关注点逐渐偏向后面的块（表现为红色部分逐渐减小，下方其他部分逐渐增大）块与块之间的转移表明相邻块之间的转移更加频繁。</p>
-<h1 id="5-Models"><a href="#5-Models" class="headerlink" title="5 Models"></a>5 Models</h1><p>给定段落p</p>
-<p>对话历史${q_1,a_1,…,q_{i-1},a_{i-1}}$</p>
-<p>黄金答案$a_1,a_2,…,a_{i-1}$被用来预测$a_i$</p>
-<p>输入：问题$q_i$</p>
-<p>输出：答案$a_i$</p>
+<h1 id="models">5 Models</h1>
+<p>给定段落p</p>
+<p>对话历史<span class="math inline">\({q_1,a_1,...,q_{i-1},a_{i-1}}\)</span></p>
+<p>黄金答案<span class="math inline">\(a_1,a_2,...,a_{i-1}\)</span>被用来预测<span class="math inline">\(a_i\)</span></p>
+<p>输入：问题<span class="math inline">\(q_i\)</span></p>
+<p>输出：答案<span class="math inline">\(a_i\)</span></p>
 <p>模型构成：PGNet+DrQA</p>
 <p>我们的任务可以被建模为对话式反应生成问题或阅读理解问题。我们在CoQA上评估了两种类型的baseline以及两者的组合</p>
-<h2 id="5-1-Conversational-Models"><a href="#5-1-Conversational-Models" class="headerlink" title="5.1 Conversational Models"></a>5.1 Conversational Models</h2><p>PGNet：以传统的seq2seq模型为基础，使用包含注意力模型的seq2seq生成答案</p>
+<h2 id="conversational-models">5.1 Conversational Models</h2>
+<p>PGNet：以传统的seq2seq模型为基础，使用包含注意力模型的seq2seq生成答案</p>
 <p>将文章，对话历史，当前问题输入双向LSTM的encoder中，在decoder中引入允许从文章中复制词语的复制机制。</p>
-<h2 id="5-2-Reading-Comprehension-Models"><a href="#5-2-Reading-Comprehension-Models" class="headerlink" title="5.2 Reading Comprehension Models"></a>5.2 Reading Comprehension Models</h2><p>DrQA：Document Retriever + Document Reader用于根据问题找出指定范围，并根据指定范围得出问题的答案。</p>
+<h2 id="reading-comprehension-models">5.2 Reading Comprehension Models</h2>
+<p>DrQA：Document Retriever + Document Reader用于根据问题找出指定范围，并根据指定范围得出问题的答案。</p>
 <p>由于DrQA在训练过程中需要文本跨度作为答案，我们选择与原始答案有最高词汇重叠（F1得分）的跨度作为黄金答案。如果答案在故事中出现多次，我们就用rational来寻找正确的答案。如果任何答案词没有出现在故事中，我们就退回到一个额外的未知标记作为答案（在训练集中约占17%）。我们在每个问题前加上其过去的问题和答案，以说明对话历史，与对话模型类似。</p>
-<p>考虑到我们的数据集中有很大一部分答案是 “是 “或 “否”，我们还包括一个增强的阅读理解模型作为比较。我们在段落的末尾增加了两个额外的标记，是和不是–如果黄金答案是 “是 “或 “不是”，模型就需要预测相应的标记作为黄金跨度；否则就与之前的模型相同。我们把这个模型称为增强的DrQA。</p>
-<h2 id="5-3-A-Combined-Model"><a href="#5-3-A-Combined-Model" class="headerlink" title="5.3 A Combined Model"></a>5.3 A Combined Model</h2><p>将DrQA与PGNet结合起来使用。在这个模型中，DrQA首先指出文本中的答案证据，而PGNet则将证据归化为答案。例如，对于图1中的Q5，我们希望DrQA首先预测出理由R5，然后PGNet从R5生成A5。</p>
+<p>考虑到我们的数据集中有很大一部分答案是 "是 "或 "否"，我们还包括一个增强的阅读理解模型作为比较。我们在段落的末尾增加了两个额外的标记，是和不是--如果黄金答案是 "是 "或 "不是"，模型就需要预测相应的标记作为黄金跨度；否则就与之前的模型相同。我们把这个模型称为增强的DrQA。</p>
+<h2 id="a-combined-model">5.3 A Combined Model</h2>
+<p>将DrQA与PGNet结合起来使用。在这个模型中，DrQA首先指出文本中的答案证据，而PGNet则将证据归化为答案。例如，对于图1中的Q5，我们希望DrQA首先预测出理由R5，然后PGNet从R5生成A5。</p>
 <p>根据经验表现，我们对DrQA和PGNet做了一些改变。对于DrQA，如果答案是理由的一个子串则直接预测答案，否则就预测理由。对于PGNet，我们提供当前问题和DrQA的跨度预测作为编码器的输入，解码器的目的是预测最终的答案。</p>
-<h1 id="6-Evaluation"><a href="#6-Evaluation" class="headerlink" title="6 Evaluation"></a>6 Evaluation</h1><h2 id="6-1-Evaluation-Metric"><a href="#6-1-Evaluation-Metric" class="headerlink" title="6.1 Evaluation Metric"></a>6.1 Evaluation Metric</h2><p>评估指标：根据重合度计算的F1分值</p>
+<h1 id="evaluation">6 Evaluation</h1>
+<h2 id="evaluation-metric">6.1 Evaluation Metric</h2>
+<p>评估指标：根据重合度计算的F1分值</p>
 <p>SQuAD：模型输出的每一个结果与n个人工答案进行比较，得到n个F1分值，取n个分值中最大的值作为该模型输出的F1分值。</p>
-<h2 id="6-2-Experimental-Setup"><a href="#6-2-Experimental-Setup" class="headerlink" title="6.2 Experimental Setup"></a>6.2 Experimental Setup</h2><p>对于seq2seq和PGNet的所有实验，我们使用OpenNMT工具包及其默认设置：2层LSTM，编码器和解码器都有500个隐藏单元。这些模型使用SGD进行优化，初始学习率为1.0，衰减率为0.5。所有层都采用了0.3的退出率。</p>
+<h2 id="experimental-setup">6.2 Experimental Setup</h2>
+<p>对于seq2seq和PGNet的所有实验，我们使用OpenNMT工具包及其默认设置：2层LSTM，编码器和解码器都有500个隐藏单元。这些模型使用SGD进行优化，初始学习率为1.0，衰减率为0.5。所有层都采用了0.3的退出率。</p>
 <p>对于DrQA实验，我们使用原始论文中的实现。我们在开发数据上调整超参数：使用对话历史的回合数、层数、每层隐藏单元的数量和退出率。我们发现的最佳配置是3层LSTM，每层有300个隐藏单元。辍学率为0.4，适用于所有LSTM层，辍学率为0.5，适用于单词嵌入。我们用Adam来优化DrQA模型。</p>
 <p>对于阅读理解模型，使用fastText进行文本分类</p>
-<h2 id="6-3-Results-and-Discussion"><a href="#6-3-Results-and-Discussion" class="headerlink" title="6.3 Results and Discussion"></a>6.3 Results and Discussion</h2><p>下表显示了模型在开发和测试数据上的结果：</p>
-<p><img src="C:\Users\Rien\Desktop\wenge_slides\fig\result.png" srcset="/img/loading.gif" lazyload alt="image-20220525003058226"></p>
+<h2 id="results-and-discussion">6.3 Results and Discussion</h2>
+<p>下表显示了模型在开发和测试数据上的结果：</p>
+<figure>
+<img src="C:\Users\Rien\Desktop\wenge_slides\fig\result.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220525003058226</figcaption>
+</figure>
 <p>seq2seq模型的表现最差，它生成了频繁出现的答案，而不管这些答案是否出现在段落中，这是众所周知的对话模型的行为。</p>
 <p>PGNet通过关注语篇中的词汇来缓解频繁出现的问题，它比seq2seq高出17.8分。然而，它仍然落后于DrQA 8.5分。一个原因可能是PGNet在回答问题前必须记住整个段落，这是DrQA避免的巨大开销。但是DrQA在回答那些答案与文段不重合的问题时却惨遭失败（见表8中的No span行）。</p>
-<p>增强后的DrQA用额外的是&#x2F;否标记规避了这个问题，使其提高了12.8分。</p>
-<p>当DrQA被送入PGNet时，我们同时增强了DrQA和PGNet的能力–DrQA产生自由形式的答案；PGNet则专注于理由而不是段落的内容。这种组合比普通的PGNet和DrQA模型分别高出21.0分和12.5分，并与增强的DrQA竞争（65.1对65.4）。</p>
-<h3 id="Models-vs-Humans"><a href="#Models-vs-Humans" class="headerlink" title="Models vs. Humans"></a>Models vs. Humans</h3><p>我们的最佳模型比人类落后23.4分。</p>
-<h3 id="In-domain-vs-Out-of-domain"><a href="#In-domain-vs-Out-of-domain" class="headerlink" title="In-domain vs. Out-of-domain"></a>In-domain vs. Out-of-domain</h3><p>所有模型在域外数据集上的表现都比域内数据更差。最好的模型下降了6.6分。</p>
+<p>增强后的DrQA用额外的是/否标记规避了这个问题，使其提高了12.8分。</p>
+<p>当DrQA被送入PGNet时，我们同时增强了DrQA和PGNet的能力--DrQA产生自由形式的答案；PGNet则专注于理由而不是段落的内容。这种组合比普通的PGNet和DrQA模型分别高出21.0分和12.5分，并与增强的DrQA竞争（65.1对65.4）。</p>
+<h3 id="models-vs.-humans">Models vs. Humans</h3>
+<p>我们的最佳模型比人类落后23.4分。</p>
+<h3 id="in-domain-vs.-out-of-domain">In-domain vs. Out-of-domain</h3>
+<p>所有模型在域外数据集上的表现都比域内数据更差。最好的模型下降了6.6分。</p>
 <p>对于领域内的结果，最好的模型和人类都发现文学领域比其他领域更难</p>
 <p>对于领域外的结果，Reddit领域显然更难</p>
-<h3 id="Error-Analysis"><a href="#Error-Analysis" class="headerlink" title="Error Analysis"></a>Error Analysis</h3><p>seq2seq和PGNet在非重叠答案上表现良好，而DrQA在重叠答案上表现良好，增强的和组合的模型在这两类问题上都有改进。</p>
+<h3 id="error-analysis">Error Analysis</h3>
+<p>seq2seq和PGNet在非重叠答案上表现良好，而DrQA在重叠答案上表现良好，增强的和组合的模型在这两类问题上都有改进。</p>
 <p>在不同的问题类型中，人类发现词汇匹配是最容易的，其次是转述，而语用学是最难的</p>
-<h3 id="Importance-of-conversation-history"><a href="#Importance-of-conversation-history" class="headerlink" title="Importance of conversation history"></a>Importance of conversation history</h3><p>下表显示了将不同数量的先前回合作为对话历史的结果：</p>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205250043643.png" srcset="/img/loading.gif" lazyload alt="image-20220525004346626"></p>
+<h3 id="importance-of-conversation-history">Importance of conversation history</h3>
+<p>下表显示了将不同数量的先前回合作为对话历史的结果：</p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205250043643.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220525004346626</figcaption>
+</figure>
 <p>所有的模型都成功地利用了历史，但超过一个以前的回合，收益就很少了。随着我们增加历史记录的大小，性能会下降。</p>
 <p>在人的实验中，前一回合在理解当前问题中起着重要作用；对话中的大多数问题在两个回合的范围内有有限的依赖性。</p>
-<h3 id="Augmented-DrQA-vs-Combined-Model"><a href="#Augmented-DrQA-vs-Combined-Model" class="headerlink" title="Augmented DrQA vs. Combined Model"></a>Augmented DrQA vs. Combined Model</h3><p>虽然增强的DrQA的性能比组合模型要好一点（在测试集上为0.3 F1），但后者模型有以下好处：</p>
-<ol>
-<li>组合模型为每个答案提供理由，可以用来证明答案是否正确（例如，是&#x2F;否问题）</li>
+<h3 id="augmented-drqa-vs.-combined-model">Augmented DrQA vs. Combined Model</h3>
+<p>虽然增强的DrQA的性能比组合模型要好一点（在测试集上为0.3 F1），但后者模型有以下好处：</p>
+<ol type="1">
+<li>组合模型为每个答案提供理由，可以用来证明答案是否正确（例如，是/否问题）</li>
 <li>我们不必事先决定增强类的集合，这有助于回答广泛的问题，如计数和多项选择（表10）</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205250047584.png" srcset="/img/loading.gif" lazyload alt="image-20220525004752631"></p>
-<center><p>表10 对答案与文本段落不重合的问题进行错误分析</p></center>
-
-<h1 id="7-Related-work"><a href="#7-Related-work" class="headerlink" title="7 Related work"></a>7 Related work</h1><p>包括Knowledge source，Naturalness ，Conversational Modeling，Reasoning，Recent progress on CoQA。</p>
-<h1 id="8-Conclusions"><a href="#8-Conclusions" class="headerlink" title="8 Conclusions"></a>8 Conclusions</h1><p>在本文中，我们介绍了CoQA，一个用于建立对话式问题回答系统的大规模数据集。与现有的阅读理解数据集不同，CoQA包含对话式问题、自由形式的答案以及作为理由的文本跨度，以及来自七个不同领域的文本段落。我们希望这项工作能够激发更多的对话建模研究，这是实现自然人机交流的一个关键因素。</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1808.07042">CoQA: A Conversational Question Answering Challenge</a></p>
+<figure>
+<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202205250047584.png" srcset="/img/loading.gif" lazyload alt="" /><figcaption>image-20220525004752631</figcaption>
+</figure>
+<center>
+<p>
+表10 对答案与文本段落不重合的问题进行错误分析
+</p>
+</center>
+<h1 id="related-work">7 Related work</h1>
+<p>包括Knowledge source，Naturalness ，Conversational Modeling，Reasoning，Recent progress on CoQA。</p>
+<h1 id="conclusions">8 Conclusions</h1>
+<p>在本文中，我们介绍了CoQA，一个用于建立对话式问题回答系统的大规模数据集。与现有的阅读理解数据集不同，CoQA包含对话式问题、自由形式的答案以及作为理由的文本跨度，以及来自七个不同领域的文本段落。我们希望这项工作能够激发更多的对话建模研究，这是实现自然人机交流的一个关键因素。</p>
+<h1 id="reference">Reference</h1>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1808.07042">CoQA: A Conversational Question Answering Challenge</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cindy_1102/article/details/88560048">【笔记1-1】基于对话的问答系统CoQA (Conversational Question Answering)</a></p>
 
                 
@@ -560,6 +628,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -738,6 +812,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

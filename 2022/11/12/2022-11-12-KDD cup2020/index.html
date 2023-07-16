@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121141823.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121145012.png">
 <meta property="article:published_time" content="2022-11-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-15T18:02:32.939Z">
+<meta property="article:modified_time" content="2023-07-16T07:34:36.818Z">
 <meta property="article:author" content="Rien Zhu">
 <meta property="article:tag" content="简历">
 <meta property="article:tag" content="KDD Cup">
@@ -262,27 +262,21 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-
 <p>关于个人简历中KDD Cup 2020 大规模共享出行的分配学习赛道思路</p>
 <span id="more"></span>
-
-
-
-<h1 id="赛题回顾"><a href="#赛题回顾" class="headerlink" title="赛题回顾"></a>赛题回顾</h1><p>应用驱动的时空大数据研究</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211120834840.png" srcset="/img/loading.gif" lazyload alt="image-20221112083358468" style="zoom:67%;" />
-
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211120835416.png" srcset="/img/loading.gif" lazyload alt="image-20221112083502558" style="zoom:67%;" />
-
+<h1 id="赛题回顾">赛题回顾</h1>
+<p>应用驱动的时空大数据研究</p>
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211120834840.png" srcset="/img/loading.gif" lazyload alt="image-20221112083358468" style="zoom:67%;" /></p>
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211120835416.png" srcset="/img/loading.gif" lazyload alt="image-20221112083502558" style="zoom:67%;" /></p>
 <p>问题的难点在于订单会随时出现，出现供需不平衡的情况；每一次决策都会影响未来全局的供需变化。</p>
 <p>需要每一次决策都对全局的供需产生积极的影响。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>直观的方式：分配问题（assignment problem）。但是没有考虑动态性，有较大问题。</p>
+<h1 id="解决方案">解决方案</h1>
+<p>直观的方式：分配问题（assignment problem）。但是没有考虑动态性，有较大问题。</p>
 <p>挑战1：在线分配模型难以预知未来信息</p>
 <p>尝试使用朴素贪心的方式。订单请求一旦出现，最近匹配查询。</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121107429.png" srcset="/img/loading.gif" lazyload alt="image-20221112110704283" style="zoom:67%;" />
-
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121107429.png" srcset="/img/loading.gif" lazyload alt="image-20221112110704283" style="zoom:67%;" /></p>
 <p>解决挑战1：时间窗口匹配模型。要求模型在时间窗口内必须执行一次分配，</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121109169.png" srcset="/img/loading.gif" lazyload alt="image-20221112110917112" style="zoom:67%;" />
-
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121109169.png" srcset="/img/loading.gif" lazyload alt="image-20221112110917112" style="zoom:67%;" /></p>
 <p>贪心方法能取得一定的结果。也有一定的提高空间</p>
 <p>挑战2：贪心匹配策略无法捕捉供需实时变化</p>
 <p><strong>匹配结果导致司机位置改变，从而影响供需分布。</strong></p>
@@ -290,35 +284,25 @@
 <p>传统的，离散的优化算法（诸如ICPC）优化目标是明确的，不依赖于数据，可认为是理性主义。</p>
 <p>机器学习需要数据驱动，因为优化目标不清楚，需要使用已知函数拟合优化目标，其中函数的一些参数确定不了，故需要调参，属于经验主义。</p>
 <p>二者没有绝对的矛盾。</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121122315.png" srcset="/img/loading.gif" lazyload alt="image-20221112112225163" style="zoom:67%;" />
-
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121124042.png" srcset="/img/loading.gif" lazyload alt="image-20221112112358578" style="zoom:67%;" />
-
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121126260.png" srcset="/img/loading.gif" lazyload alt="image-20221112112629341" style="zoom:67%;" />
-
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121122315.png" srcset="/img/loading.gif" lazyload alt="image-20221112112225163" style="zoom:67%;" /></p>
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121124042.png" srcset="/img/loading.gif" lazyload alt="image-20221112112358578" style="zoom:67%;" /></p>
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121126260.png" srcset="/img/loading.gif" lazyload alt="image-20221112112629341" style="zoom:67%;" /></p>
 <p>二分图构造过程：</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121127746.png" srcset="/img/loading.gif" lazyload alt="image-20221112112708323" style="zoom:67%;" />
-
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121129540.png" srcset="/img/loading.gif" lazyload alt="image-20221112112953309" style="zoom:67%;" />
-
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121127746.png" srcset="/img/loading.gif" lazyload alt="image-20221112112708323" style="zoom:67%;" /></p>
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121129540.png" srcset="/img/loading.gif" lazyload alt="image-20221112112953309" style="zoom:67%;" /></p>
 <p>组合优化匹配：</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121133916.png" srcset="/img/loading.gif" lazyload alt="image-20221112113324872" style="zoom:67%;" />
-
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121133916.png" srcset="/img/loading.gif" lazyload alt="image-20221112113324872" style="zoom:67%;" /></p>
 <p>价值函数更新：</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121134139.png" srcset="/img/loading.gif" lazyload alt="image-20221112113401935" style="zoom:67%;" />
-
-<h1 id="拓展研究"><a href="#拓展研究" class="headerlink" title="拓展研究"></a>拓展研究</h1><p>考虑司机公平性问题。问题的主要原因是强化学习中贪心的趋势不可控，在某一轮选择中累计了贪心的趋势，导致公平性出现问题。</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121139010.png" srcset="/img/loading.gif" lazyload alt="image-20221112113941035" style="zoom:67%;" />
-
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121134139.png" srcset="/img/loading.gif" lazyload alt="image-20221112113401935" style="zoom:67%;" /></p>
+<h1 id="拓展研究">拓展研究</h1>
+<p>考虑司机公平性问题。问题的主要原因是强化学习中贪心的趋势不可控，在某一轮选择中累计了贪心的趋势，导致公平性出现问题。</p>
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121139010.png" srcset="/img/loading.gif" lazyload alt="image-20221112113941035" style="zoom:67%;" /></p>
 <p>优化目标：面向司机收益的公平匹配</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121141823.png" srcset="/img/loading.gif" lazyload alt="image-20221112114129828" style="zoom:67%;" />
-
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121141823.png" srcset="/img/loading.gif" lazyload alt="image-20221112114129828" style="zoom:67%;" /></p>
 <p>冠军团队经验：</p>
-<img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121145012.png" srcset="/img/loading.gif" lazyload alt="image-20221112114517325" style="zoom:67%;" />
-
-
-
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1508456070464495616">北航冠军团队参赛经验分享</a></p>
+<p><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202211121145012.png" srcset="/img/loading.gif" lazyload alt="image-20221112114517325" style="zoom:67%;" /></p>
+<h1 id="reference">Reference</h1>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1508456070464495616">北航冠军团队参赛经验分享</a></p>
 
                 
               </div>
@@ -479,6 +463,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -657,6 +647,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
