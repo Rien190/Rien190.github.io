@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>常见问题</title>
+    <link href="/2023/07/19/2022-07-13-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/07/19/2022-07-13-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>本人在日常学习工作时遇到的常见问题及解决方法</p><span id="more"></span><h1 id="如何给pdf文件加目录">如何给PDF文件加目录</h1><p>参考:<a href="https://www.zhihu.com/question/392666875/answer/2157219298">如何给PDF文件加目录</a></p><p>文件<a href="https://link.zhihu.com/?target=https%3A//seasoning.lanzoui.com/iK4kvsm02vi">PdgCntEditor</a>已下载至本机Sumatra文件夹下, 打开即用</p><h1 id="git-hub仓库出现身份验证错误">Git Hub仓库出现身份验证错误</h1><p>错误信息:</p><figure><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202207131816370.png" alt="" /><figcaption>image-20220713181603979</figcaption></figure><p>出错原因:需要使用令牌访问</p><p>解决方法:</p><figure><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202207131816642.png" alt="" /><figcaption>image-20220713181656682</figcaption></figure><p>username为Rien190</p><p>password为GitHub之前设置的token</p><p>也可以 把<code>token</code>直接添加远程仓库链接中，这样就可以避免同一个仓库每次提交代码都要输入<code>token</code>了：</p><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">remote</span> <span class="hljs-built_in">set-url</span> <span class="hljs-string">origin</span> <span class="hljs-string">https</span>://&lt;<span class="hljs-string">your_token</span>&gt;@<span class="hljs-string">github</span>.<span class="hljs-string">com</span>/&lt;<span class="hljs-string">USERNAME</span>&gt;/&lt;<span class="hljs-string">REPO</span>&gt;.<span class="hljs-string">git</span><br></code></pre></td></tr></table></figure><ul><li><code>&lt;your_token&gt;</code>：换成你自己得到的<code>token</code></li><li><code>&lt;USERNAME&gt;</code>：是你自己<code>github</code>的<code>用户名</code></li><li><code>&lt;REPO&gt;</code>：是你的<code>仓库名称</code></li></ul><h1 id="电脑字体错误">电脑字体错误</h1><p>某次PC连接手机传输文件时手机文件资源管理器宕机，自动关闭后电脑字体改变。具体变化为桌面的任务图标，浏览器等应用内字体粗细和大小等发生变化。</p><p>解决方法：在windows设置-&gt;轻松使用-&gt;显示器-&gt;放大文本处先放大再缩小，重启后解决问题</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>问题集合</tag>
+      
+      <tag>解决方法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>科研工具介绍</title>
     <link href="/2023/07/15/2023-07-15-%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/"/>
     <url>/2023/07/15/2023-07-15-%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/</url>
@@ -104,33 +131,6 @@
     <tags>
       
       <tag>科研</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>常见问题</title>
-    <link href="/2022/07/13/2022-07-13-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
-    <url>/2022/07/13/2022-07-13-%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
-    
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>本人在日常学习工作时遇到的常见问题及解决方法</p><span id="more"></span><h1 id="如何给pdf文件加目录">如何给PDF文件加目录</h1><p>参考:<a href="https://www.zhihu.com/question/392666875/answer/2157219298">如何给PDF文件加目录</a></p><p>文件<a href="https://link.zhihu.com/?target=https%3A//seasoning.lanzoui.com/iK4kvsm02vi">PdgCntEditor</a>已下载至本机Sumatra文件夹下, 打开即用</p><h1 id="git-hub仓库出现身份验证错误">Git Hub仓库出现身份验证错误</h1><p>错误信息:</p><figure><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202207131816370.png" alt="" /><figcaption>image-20220713181603979</figcaption></figure><p>出错原因:需要使用令牌访问</p><p>解决方法:</p><figure><img src="https://raw.githubusercontent.com/Rien190/ImgURL/master/img/202207131816642.png" alt="" /><figcaption>image-20220713181656682</figcaption></figure><p>username为Rien190</p><p>password为GitHub之前设置的token</p><p>也可以 把<code>token</code>直接添加远程仓库链接中，这样就可以避免同一个仓库每次提交代码都要输入<code>token</code>了：</p><figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">remote</span> <span class="hljs-built_in">set-url</span> <span class="hljs-string">origin</span> <span class="hljs-string">https</span>://&lt;<span class="hljs-string">your_token</span>&gt;@<span class="hljs-string">github</span>.<span class="hljs-string">com</span>/&lt;<span class="hljs-string">USERNAME</span>&gt;/&lt;<span class="hljs-string">REPO</span>&gt;.<span class="hljs-string">git</span><br></code></pre></td></tr></table></figure><ul><li><code>&lt;your_token&gt;</code>：换成你自己得到的<code>token</code></li><li><code>&lt;USERNAME&gt;</code>：是你自己<code>github</code>的<code>用户名</code></li><li><code>&lt;REPO&gt;</code>：是你的<code>仓库名称</code></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>日常</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>问题集合</tag>
-      
-      <tag>解决方法</tag>
       
     </tags>
     
